@@ -6,7 +6,7 @@
     var seed = null;
     var bip32RootKey = null;
     var bip32ExtendedKey = null;
-    var network = bitcoinjs.bitcoin.networks.litecoin;
+    var network = bitcoinjs.bitcoin.networks.garlicoin;
     var addressRowTemplate = $("#address-row-template");
 
     var showIndex = true;
@@ -353,10 +353,10 @@
     function litecoinUseLtubChanged() {
         litecoinUseLtub = DOM.litecoinUseLtub.prop("checked");
         if (litecoinUseLtub) {
-            network = bitcoinjs.bitcoin.networks.litecoin;
+            network = bitcoinjs.bitcoin.networks.garlicoin;
         }
         else {
-            network = bitcoinjs.bitcoin.networks.litecoinXprv;
+            network = bitcoinjs.bitcoin.networks.garlicoinXprv;
         }
         phraseChanged();
     }
@@ -850,13 +850,13 @@
                 }
                 // query Insight Lite for balance
                 // convert from sats to whole ltc + append LTC
-                var baseURL = "https://insight.litecore.io/api/addr/" + address + "/balance";
+                var baseURL = "https://garlicblocks.com/api/addr/" + address + "/balance";
                 var balance;
                 $.ajax({
                     url: baseURL,
                     success: function(data) {
                         data = data / 100000000
-                        balance = data.toString() + " LTC";
+                        balance = data.toString() + " GRLC";
                     },
                     async: false,
                 });
@@ -1517,11 +1517,11 @@
 
     var networks = [
         {
-            name: "LTC - Litecoin",
+            name: "GRLC - Garlicoin",
             segwitAvailable: true,
             onSelect: function() {
-                network = bitcoinjs.bitcoin.networks.litecoin;
-                setHdCoin(2);
+                network = bitcoinjs.bitcoin.networks.garlicoin;
+                setHdCoin(38);
                 DOM.litecoinLtubContainer.removeClass("hidden");
             },
         },
@@ -1529,14 +1529,7 @@
 
     var clients = [
         {
-            name: "LoafWallet",
-            onSelect: function() {
-                DOM.bip32path.val("m/0'/0");
-                DOM.hardenedAddresses.prop('checked', false);
-            }
-        },
-        {
-            name: "LoafWallet (change)",
+            name: "GarlicWallet",
             onSelect: function() {
                 DOM.bip32path.val("m/0'/1");
                 DOM.hardenedAddresses.prop('checked', false);

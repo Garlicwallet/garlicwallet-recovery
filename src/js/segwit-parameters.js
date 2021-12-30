@@ -69,6 +69,19 @@ bitcoinjs.bitcoin.networks.litecoin.p2wpkhInP2sh = {
     wif: 0xb0
 };
 
+bitcoinjs.bitcoin.networks.garlicoin.p2wpkhInP2sh = {
+    baseNetwork: "garlicoin",
+    messagePrefix: '\x19Garlicoin Signed Message:\n',
+    bech32: 'grlc',
+    bip32: {
+        public: 0x01b26ef6,
+        private: 0x01b26792
+    },
+    pubKeyHash: 0x26,
+    scriptHash: 0x32,
+    wif: 0xb0
+};
+
 bitcoinjs.bitcoin.networks.fujicoin.p2wpkh = {
     baseNetwork: "fujicoin",
     messagePrefix: '\x19FujiCoin Signed Message:\n',
